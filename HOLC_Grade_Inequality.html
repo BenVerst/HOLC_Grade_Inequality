@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Ben Versteeg" />
+
+<meta name="date" content="2023-12-15" />
+
+<title>HOLC Grade Inequality</title>
+
+<script src="HOLC_Grade_Inequality_files/header-attrs-2.25/header-attrs.js"></script>
+<script src="HOLC_Grade_Inequality_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="HOLC_Grade_Inequality_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="HOLC_Grade_Inequality_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="HOLC_Grade_Inequality_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="HOLC_Grade_Inequality_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="HOLC_Grade_Inequality_files/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="HOLC_Grade_Inequality_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="HOLC_Grade_Inequality_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="HOLC_Grade_Inequality_files/navigation-1.1/tabsets.js"></script>
+<link href="HOLC_Grade_Inequality_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="HOLC_Grade_Inequality_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">HOLC Grade Inequality</h1>
+<h4 class="author">Ben Versteeg</h4>
+<h4 class="date">2023-12-15</h4>
+
+</div>
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Present-day environmental justice may reflect legacies of injustice
+in the past. The United States has a long history of racial segregation
+which is still visible. During the 1930’s the Home Owners’ Loan
+Corporation (HOLC), as part of the New Deal, rated neighborhoods based
+on their perceived safety for real estate investment. Their ranking
+system, (A (green), B (blue), C (yellow), D (red)) was then used to
+block access to loans for home ownership. Colloquially known as
+“redlining”, this practice has had widely-documented consequences not
+only for community wealth, but also health.<a href="#fn1"
+class="footnote-ref" id="fnref1"><sup>1</sup></a> Redlined neighborhoods
+have less greenery<a href="#fn2" class="footnote-ref"
+id="fnref2"><sup>2</sup></a> and are hotter than other neighborhoods.<a
+href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>Check out coverage by the <a
+href="https://www.nytimes.com/interactive/2020/08/24/climate/racism-redlining-cities-global-warming.html">New
+York Times</a>.</p>
+<p>A recent study found that redlining has not only affected the
+environments communities are exposed to, it has also shaped our
+observations of biodiversity.<a href="#fn4" class="footnote-ref"
+id="fnref4"><sup>4</sup></a> Community or citizen science, whereby
+individuals share observations of species, is generating an enormous
+volume of data. Ellis-Soto and co-authors found that redlined
+neighborhoods remain the most undersampled areas across 195 US cities.
+This gap is highly concerning, because conservation decisions are made
+based on these data.</p>
+<p>Check out coverage by <a
+href="https://eos.org/articles/bird-biodiversity-reports-reflect-cities-redlined-past?utm_source=EosBuzz&amp;mkt_tok=OTg3LUlHVC01NzIAAAGOx3ckQPpeDY3QyFKdUnBSYqILj3qLrgb_Q2lasphwcF90xEzMgjZFUo3NHsw3caXDcZe6I8D8qdVsSRr3wzhb6LKAQRgNo8ffhjieEbDwMw">EOS</a>.</p>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<div id="ejscreen" class="section level4">
+<h4>EJScreen</h4>
+<p>We will be working with data from the United States Environmental
+Protection Agency’s EJScreen: Environmental Justice Screening and
+Mapping Tool.</p>
+<p>According to the <a
+href="https://www.epa.gov/ejscreen/purposes-and-uses-ejscreen">US EPA
+website</a>:</p>
+<blockquote>
+<p>This screening tool and data may be of interest to community
+residents or other stakeholders as they search for environmental or
+demographic information. It can also support a wide range of research
+and policy goals. The public has used EJScreen in many different
+locations and in many different ways.</p>
+<p>EPA is sharing EJScreen with the public:<br />
+- to be more transparent about how we consider environmental justice in
+our work,<br />
+- to assist our stakeholders in making informed decisions about pursuing
+environmental justice and,<br />
+- to create a common starting point between the agency and the public
+when looking at issues related to environmental justice.</p>
+</blockquote>
+<p>EJScreen provides on environmental and demographic information for
+the US at the Census <a
+href="https://en.wikipedia.org/wiki/Census_tract">tract</a> and <a
+href="https://en.wikipedia.org/wiki/Census_block_group">block group</a>
+levels. You will be working with block group data that has been
+downloaded from the <a
+href="https://www.epa.gov/ejscreen/download-ejscreen-data">EPA site</a>.
+To understand the associated data columns, you will need to explore the
+Technical Documentation and column description spreadsheet available in
+the data folder. I also encourage you to explore the <a
+href="https://www.epa.gov/ejscreen/limitations-and-caveats-using-ejscreen">limitations
+and caveats</a> of the data.</p>
+</div>
+<div id="mapping-inequality" class="section level4">
+<h4>Mapping Inequality</h4>
+<p>A team of researchers, led by the <a
+href="https://dsl.richmond.edu/">Digital Scholarship Lab</a> at the
+University of Richmond have digitized maps and information from the HOLC
+as part of the <a
+href="https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58">Mapping
+Inequality</a> project.</p>
+<p>We will be working with maps of HOLC grade designations for Los
+Angeles. Information on the data can be found <a
+href="https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&amp;text=downloads">here</a>.<a
+href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+</div>
+<div id="biodiversity-observations" class="section level4">
+<h4>Biodiversity observations</h4>
+<p>The <a href="gbif.org">Global Biodiversity Information Facility</a>
+is the largest aggregator of biodiversity observations in the world.
+Observations typically include a location and date that a species was
+observed.</p>
+<p>We will be working observations of birds from 2021 onward.</p>
+</div>
+</div>
+<div
+id="investigating-the-legacy-of-redlining-in-current-environmental-injustice"
+class="section level2">
+<h2>Investigating the legacy of redlining in current environmental
+(in)justice</h2>
+<div id="importing-data-and-libraries" class="section level3">
+<h3>Importing data and libraries</h3>
+<pre class="r"><code># Read in necessary packages
+library(tidyverse)
+library(sf)
+library(tmap)</code></pre>
+<p>Read in EJScreen data and filter to Los Angeles County</p>
+<pre class="r"><code>ejscreen &lt;- st_read(&quot;data/EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb&quot;) </code></pre>
+<pre><code>## Reading layer `EJSCREEN_StatePctiles_with_AS_CNMI_GU_VI&#39; from data source 
+##   `C:\Users\17143\Documents\MEDS\MEDS_223\Projects\HOLC_Grade_Inequality\data\EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb&#39; 
+##   using driver `OpenFileGDB&#39;
+## Simple feature collection with 243021 features and 223 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -19951910 ymin: -1617130 xmax: 16259830 ymax: 11554350
+## Projected CRS: WGS 84 / Pseudo-Mercator</code></pre>
+<pre class="r"><code>california &lt;- ejscreen %&gt;%
+  filter(ST_ABBREV == &quot;CA&quot;) 
+
+# filter to a county you are interested in
+la_county &lt;- california %&gt;%
+  filter(CNTY_NAME %in% c(&quot;Los Angeles County&quot;))</code></pre>
+</div>
+<div id="data-analysis" class="section level3">
+<h3>Data Analysis</h3>
+<div id="wastewater-discharge" class="section level4">
+<h4>Wastewater discharge</h4>
+<p>Let’s create a map of wastewater discharge by census block groups.
+Indicate which census block groups are above the 95th percentile of
+national values for wastewater discharge by adding a centroid.</p>
+<pre class="r"><code># Filtering for centroids above the 95th percentile
+la_centroid &lt;-  st_centroid(la_county) %&gt;% 
+  filter(P_PWDIS &gt; 95)
+
+
+# Map 1: Base map with filled census block groups representing wastewater discharge
+map1 &lt;- tm_shape(la_county) + # Create a base map using LA County geometry
+  tm_borders() + # Add borders to the map
+  tm_fill(&quot;PWDIS&quot;, # Fill census block groups based on &quot;PWDIS&quot; variable
+          style = &quot;jenks&quot;, # Jenks classification
+          n = 7, palette = &quot;viridis&quot;,  # 7 breaks, viridis palette
+          title = &quot;Wastewater Discharge&quot;) + # Add a legend title for the fill
+  tm_legend(outside = TRUE) # Place the legend outside the map
+
+# Map 2: Build upon Map 1, adding red dots at the centroids of census block groups
+map2 &lt;- map1 +
+  tm_shape(la_centroid) + # Add a new layer with centroids of census block groups
+    tm_dots(size = 0.10, aes(color = &quot;red&quot;), # Display dots at centroids, red in color
+            fill_alpha = 1) + # Make the dots fully opaque
+    tm_add_legend(type = &quot;fill&quot;, # Add a legend indicating red dots
+                  title = &quot;Census Block Groups&quot;, # Legend title
+                  labels = c(&quot;Above 95 percentile&quot;), # Legend labels
+                  fill = &quot;red&quot;) + # Color for the legend
+    tm_layout(main.title = &quot;Wastewater Discharge By Census Block Group&quot;, # Set main title
+              xlab.text = &quot;Longitude&quot;, # X-axis label
+              ylab.text = &quot;latitude&quot;) + # Y-axis label
+    tm_graticules() + # Add graticules (latitude and longitude lines)
+    tm_scale_bar() + # Add a scale bar
+    tm_compass(position = c(&quot;left&quot;, &quot;bottom&quot;), # Add a compass in the bottom-left corner
+               size = 1) # Set the compass size
+
+# Print Map 2
+map2</code></pre>
+<p><img src="HOLC_Grade_Inequality_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This map is of LA County and it shows the percentiles of wastewater
+discharge. The least amount of discharge is represented by green and the
+most discharge is represented by dark purple. The red areas are cencus
+block groups over the 95th percentile.</p>
+</div>
+<div id="low-income-percentage" class="section level4">
+<h4>Low Income Percentage</h4>
+<p>Next, we’ll find the percent of census block groups that have:<br />
+- less than 5% of the population is considered low income</p>
+<pre class="r"><code># filtering for low income percent that is less than 5 percent
+la_centroid1 &lt;- st_centroid(la_county) %&gt;% 
+  filter(LOWINCPCT &lt; .05)
+
+# divide the number of rows in la_centroid1 by rows in la_county
+nrow(la_centroid1) / nrow(la_county)</code></pre>
+<pre><code>## [1] 0.06114398</code></pre>
+<pre class="r"><code># 6%</code></pre>
+<p>In this analysis, we observe a proportion of approximately 6%. One
+inference drawn from this figure suggests a notable presence of census
+blocks with a greater share of residents classified as having a low
+income. This implies that there may be a higher concentration of
+individuals with lower income levels residing in Los Angeles County.
+Further exploration of the data is warranted to determine if this
+low-income population is more prevalent in areas assigned lower HOLC
+ranks.</p>
+</div>
+<div id="particulate-matter-and-superfund-proximity"
+class="section level4">
+<h4>Particulate Matter and Superfund proximity</h4>
+<p>Having examined the percentage of low-income residents across various
+census block groups, we will now investigate the association between
+census block groups and their proximity to Particulate Matter and
+Superfund sites.</p>
+<p>We will find the percent of census block groups that are:<br />
+- above the 80th percentile for Particulate Matter 2.5 AND<br />
+- above the 80th percentile for Superfund proximity</p>
+<pre class="r"><code># filtering above the 80 percentile
+la_centroid2 &lt;- st_centroid(la_county) %&gt;% 
+  filter(P_PM25 &gt; 80 &amp; P_PNPL &gt; 80) 
+
+nrow(la_centroid2) / nrow(la_county)</code></pre>
+<pre><code>## [1] 0.17357</code></pre>
+<pre class="r"><code># 17%</code></pre>
+<p>Based on this analysis, it can be inferred that approximately 17% of
+census block groups reside in regions that fall within the 80th
+percentile concerning elevated PM 2.5 levels and proximity to Superfund
+sites.</p>
+</div>
+<div id="import-redlining-information-for-los-angeles."
+class="section level4">
+<h4>Import redlining information for Los Angeles.</h4>
+<p>Read in the redlining data for Los Angeles county from a URL
+link.</p>
+<pre class="r"><code># Reading in redlining data
+LA_redlining &lt;- st_read(&quot;https://dsl.richmond.edu/panorama/redlining/static/citiesData/CALosAngeles1939/geojson.json&quot;) %&gt;%
+  st_make_valid()</code></pre>
+<pre><code>## Reading layer `geojson&#39; from data source 
+##   `https://dsl.richmond.edu/panorama/redlining/static/citiesData/CALosAngeles1939/geojson.json&#39; 
+##   using driver `GeoJSON&#39;
+## Simple feature collection with 417 features and 14 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -118.6104 ymin: 33.70563 xmax: -117.7028 ymax: 34.30388
+## Geodetic CRS:  WGS 84</code></pre>
+</div>
+<div id="holc-grade-la-county-map" class="section level4">
+<h4>HOLC Grade LA County Map</h4>
+<p>Let’s make a map of historical redlining boundaries, colored by HOLC
+grade.</p>
+<pre class="r"><code># Map layer 1: Historical Redlining Boundaries
+tm_shape(LA_redlining) + # Define the base layer using the LA_redlining dataset
+  tm_graticules() + # Add graticules (latitude and longitude lines)
+  tm_polygons(fill = &quot;grade&quot;, col = &quot;black&quot;) + # Add polygons filled based on the &quot;grade&quot; variable, outlined in black
+  tm_shape(la_county) + # Add a new layer with LA County boundaries
+  tm_borders(col = &quot;darkgrey&quot;, col_alpha = 0.2) + # Add county borders in dark grey with 20% transparency
+  tm_title(&quot;Historical Redlining Boundaries&quot;) + # Set the main title for the map
+  tm_scalebar(position = c(&quot;left&quot;, &quot;bottom&quot;)) + # Add a scale bar in the bottom-left corner
+  tm_compass(position = c(&quot;right&quot;, &quot;bottom&quot;)) # Add a compass in the bottom-right corner</code></pre>
+<p><img src="HOLC_Grade_Inequality_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>This figure shows us where each HOLC grade is throughout LA
+County.</p>
+</div>
+<div id="holc-grade-census-block-groups" class="section level4">
+<h4>HOLC Grade Census Block Groups</h4>
+<p>Let’s now find the number of census block groups that fall within
+areas with HOLC grades</p>
+<pre class="r"><code>st_crs(LA_redlining) &lt;- st_crs(la_county)
+  
+st_crs(la_county) == st_crs(LA_redlining)
+
+la_join &lt;- st_join(la_county, LA_redlining)
+
+nrow(la_join)</code></pre>
+<p>This tells us that there are a total of 6591 census block groups that
+fall within HOLC grade areas.</p>
+</div>
+<div id="summarizing-redlining-data" class="section level4">
+<h4>Summarizing Redlining data</h4>
+<p>Let’s summarize the current conditions based on EJScreen data within
+historical redlining categories using the mean of the following
+variables:<br />
+- % low income.<br />
+- percentile for particulate Matter 2.5.<br />
+- percentile for low life expectancy.<br />
+- percentile for air toxics cancer risk (20 points)</p>
+<pre class="r"><code>mean(ejscreen$LOWINCPCT, na.rm = TRUE) * 100</code></pre>
+<pre><code>## [1] 30.68652</code></pre>
+<pre class="r"><code>mean(ejscreen$P_PM25, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 49.53076</code></pre>
+<pre class="r"><code>mean(ejscreen$LIFEEXPPCT, na.rm = TRUE) * 100</code></pre>
+<pre><code>## [1] 19.51073</code></pre>
+<pre class="r"><code>mean(ejscreen$P_CANCER, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 24.17383</code></pre>
+<p>The mean percent of low income is 30%, the mean percentile for
+particulate matter 2.5 is 50%, the mean percentile for low life
+expectancy is 19%, and the mean percentile for air toxic cancer risk is
+24%. Based on this analysis, individuals residing in areas assigned an A
+HOLC grade experience a higher standard of living compared to those in
+areas with a D HOLC grade. The A HOLC grade is associated with a larger
+income pool, implying greater access to quality healthcare and a cleaner
+living environment, in contrast to areas with lower income grades.</p>
+</div>
+</div>
+</div>
+<div
+id="investigating-the-legacy-of-redlining-in-biodiversity-observations"
+class="section level2">
+<h2>Investigating the legacy of redlining in biodiversity
+observations</h2>
+<p>For bird observations from 2022 that fall within neighborhoods with
+HOLC grads, let’s find the percent of observations within each redlining
+categories and plot results.</p>
+<pre class="r"><code># Read in the birds data
+gbif_birds &lt;- st_read(&quot;data/gbif-birds-LA&quot;) </code></pre>
+<pre><code>## Reading layer `gbif-birds-LA&#39; from data source 
+##   `C:\Users\17143\Documents\MEDS\MEDS_223\Projects\HOLC_Grade_Inequality\data\gbif-birds-LA&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 1288865 features and 1 field
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -118.6099 ymin: 33.70563 xmax: -117.7028 ymax: 34.30385
+## Geodetic CRS:  WGS 84</code></pre>
+<pre class="r"><code># Set the CRS of gbif_birds to match LA_redlining
+st_crs(gbif_birds) &lt;- st_crs(LA_redlining)
+
+# Spatial join based on intersection between LA_redlining and gbif_birds
+joined_birds &lt;- st_join(LA_redlining, gbif_birds, join = st_intersects)
+
+# Filter for only bird records from the year 2022
+birds &lt;- joined_birds[joined_birds$year == 2022, ]
+
+# Count the number of bird records
+nrow(birds)</code></pre>
+<pre><code>## [1] 7135</code></pre>
+<pre class="r"><code># Calculate the percentage of bird records for each HOLC grade
+birds_sum &lt;- birds %&gt;% 
+  group_by(grade) %&gt;% # Group data by HOLC grade
+  summarise(birds_p = n()/nrow(birds)*100) %&gt;% # Calculate the percentage of bird records for each grade
+  st_drop_geometry() # Drop the spatial geometry for summary purposes
+
+birds_sum</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   grade birds_p
+## * &lt;chr&gt;   &lt;dbl&gt;
+## 1 A       15.0 
+## 2 B       18.6 
+## 3 C       34.2 
+## 4 D       28.1 
+## 5 &lt;NA&gt;     4.06</code></pre>
+<pre class="r"><code># Create a bar plot using birds_sum data
+ggplot(data = birds_sum, aes(x = grade, y = birds_p)) +
+  geom_bar(stat = &quot;identity&quot;, fill = &quot;skyblue&quot;) +
+  labs(
+    x = &quot;Historical Redlining Categories&quot;, # X-axis label
+    y = &quot;Percentage of Bird Observations&quot;, # Y-axis label
+    title = &quot;Distribution of Bird Observations by Redlining Category (Year 2022)&quot;
+  ) + # title
+  theme_minimal()  # Set the theme to minimal</code></pre>
+<p><img src="HOLC_Grade_Inequality_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Based on the results, it seems that there was a higher percentage of
+bird observations in areas with lower HOLC grades, specifically, the C
+category. It is surprising that there would be more birds in areas with
+lower HOLC grades but there could be a few explanations on why this is
+the case. Areas with lower HOLC grades may have retained more natural
+habitats, such as parks, open spaces, and undeveloped land. There could
+also be more food sources and ecological diversity. Another reason is
+that there could be some sampling bias where there could be more
+birdwatchers and researchers in lower HOLC grade areas which results in
+more observations in those areas, even if the bird populations are not
+actually higher.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Gee, G. C. (2008). A multilevel analysis of the
+relationship between institutional and individual racial discrimination
+and health status. American journal of public health, 98(Supplement_1),
+S48-S56.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Nardone, A., Rudolph, K. E., Morello-Frosch, R., &amp;
+Casey, J. A. (2021). Redlines and greenspace: the relationship between
+historical redlining and 2010 greenspace across the United States.
+Environmental health perspectives, 129(1), 017006.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Hoffman, J. S., Shandas, V., &amp; Pendleton, N. (2020).
+The effects of historical housing policies on resident exposure to
+intra-urban heat: a study of 108 US urban areas. Climate, 8(1), 12.<a
+href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Ellis-Soto, D., Chapman, M., &amp; Locke, D. H. (2023).
+Historical redlining is associated with increasing geographical
+disparities in bird biodiversity sampling in the United States. Nature
+Human Behaviour, 1-9.<a href="#fnref4"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Robert K. Nelson, LaDale Winling, Richard Marciano,
+Nathan Connolly, et al., “Mapping Inequality,” American Panorama, ed.
+Robert K. Nelson and Edward L. Ayers, accessed October 17, 2023, <a
+href="https://dsl.richmond.edu/panorama/redlining/"
+class="uri">https://dsl.richmond.edu/panorama/redlining/</a><a
+href="#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
