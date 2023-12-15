@@ -45,11 +45,13 @@ We will be working observations of birds from 2021 onward.
 ```         
 HOLC_Grade_Inequality
 │   README.md
-│   Rmd/Proj files    
-│
-└───data
-    │   column descriptions: EJSCREEN_2023_BG_Columns.xlsx
-    │   metadata explation: ejscreen-tech-doc-version-2-2.pdf
-    │   spatial data: EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb
-    |   biodiversity data: gbif-birds-LA/gbif-birds-LA.shp
+│   HOLC_Grade_Inequality.html
+│   HOLC_Grade_Inequality.Rmd
+│   HOLC_Grade_Inequality.Rproj
+│   .gitignore
+│   data
+    └─── │  column descriptions: EJSCREEN_2023_BG_Columns.xlsx
+         │  metadata explation: ejscreen-tech-doc-version-2-2.pdf
+         │  spatial data: EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb
+         │  biodiversity data: gbif-birds-LA/gbif-birds-LA.shp
 ```
