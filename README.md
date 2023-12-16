@@ -1,5 +1,6 @@
 # Understanding Home Owners' Loan Corporation Grade Inequality In LA
 
+## Overview
 Present-day environmental justice may reflect legacies of injustice in the past. The United States has a long history of racial segregation which is still visible. During the 1930's the Home Owners' Loan Corporation (HOLC), as part of the New Deal, rated neighborhoods based on their perceived safety for real estate investment. Their ranking system, (A (green), B (blue), C (yellow), D (red)) was then used to block access to loans for home ownership. Colloquially known as "redlining", this practice has had widely-documented consequences not only for community wealth, but also health. Redlined neighborhoods have less greenery and are hotter than other neighborhoods.
 
 A recent study found that redlining has not only affected the environments communities are exposed to, it has also shaped our observations of biodiversity. Community or citizen science, whereby individuals share observations of species, is generating an enormous volume of data. Ellis-Soto and co-authors found that redlined neighborhoods remain the most undersampled areas across 195 US cities. This gap is highly concerning, because conservation decisions are made based on these data.
