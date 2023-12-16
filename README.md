@@ -25,8 +25,6 @@ This screening tool and data may be of interest to community residents or other 
 
 EPA is sharing EJScreen with the public:- to be more transparent about how we consider environmental justice in our work,- to assist our stakeholders in making informed decisions about pursuing environmental justice and,- to create a common starting point between the agency and the public when looking at issues related to environmental justice.
 
-EJScreen provides on environmental and demographic information for the US at the Census tract and block group levels. You will be working with block group data that has been downloaded from the EPA site. To understand the associated data columns, you will need to explore the Technical Documentation and column description spreadsheet available in the data folder. I also encourage you to explore the limitations and caveats of the data.
-
 ### Mapping Inequality
 
 A team of researchers, led by the Digital Scholarship Lab at the University of Richmond have digitized maps and information from the HOLC as part of the Mapping Inequality project.
